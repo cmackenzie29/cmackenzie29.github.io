@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>visualize</title>
+    <script type="module" crossorigin src="./assets/index-4n22QjCD.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-B0Z9INg1.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-CBDbhulC.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-CYIjoINj.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-xfs0Sn4r.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-BQrReHnR.js">
+    <link rel="modulepreload" crossorigin href="./assets/schemas-aTUejmFi.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-BCaOs5rp.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-oX0TOjjx.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-Cmx0b_zA.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-aFmHgJZY.js">
+    <link rel="modulepreload" crossorigin href="./assets/isArrayLikeObject-DnwgSs_Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/_initCloneObject-CM3WilQg.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseMerge-DLqSVasz.js">
+    <link rel="modulepreload" crossorigin href="./assets/objects-snlMn4yk.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-B74pBk57.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-92uWqz-P.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-Ci2dTZ72.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-D5Ywm7-q.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-BDbGiS7O.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-CrTnjj37.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-Sz5nSFku.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-BlNM0caL.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-DB0hHKMi.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-ldLVeaqm.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-BH2jz-F4.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DzCQtGkt.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-BSRA2YI9.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-Dh8EwhsF.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-CA-2mBs3.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-B7HeEoG2.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BoA6XBpj.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-Do8M9TDF.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-DHJ9s6Vk.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-nLt2y0Sw.js">
+    <link rel="modulepreload" crossorigin href="./assets/circle-ByJdIf5p.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-BUtPzKB4.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BtC9ym6k.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CZNULd6Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-BqUx5USx.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-Haz_uxEL.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-D8kPgMKr.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-C49f7GXV.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-B_XmHROl.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DiYjQAhI.js">
+    <link rel="modulepreload" crossorigin href="./assets/marked.esm-B_3iMIUq.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-CReV1AYG.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-C6_IaFh7.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-B8pdsUrS.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-BUaJcygz.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-hGYJX0Ha.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-CloO6gbw.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-Bc-r3jsC.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-DgpSQhrP.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-DEbY281O.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-k9DpjH68.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-DpWHUGuF.js">
+    <link rel="modulepreload" crossorigin href="./assets/write-secret-modal-D6zoZgLY.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-C4J9gIE1.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-D_HX-0qx.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-BSgtkC2e.js">
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-HclGiUj8.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DkPPv0FB.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dw9YRsCU.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-B0RXffUm.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cx4BE7jC.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CKUpxYGQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-Dc5bKD4z.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-zcL04qUW.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-C-ri8BtY.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-Buhk-UgR.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-DrVcFY1Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-Cp-G34Rz.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-DjNf4SIX.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasPath-BmRQipI0.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-yw4sIeJR.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-gX6o3Pih.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-Bs4cJfJU.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-DzO-nXy-.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-DjXr9Y9D.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-BMXKNElG.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-CFuPxa9F.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-DlEomWzI.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-CvVTau-c.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-BHMOvJzM.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-DdB_uBif.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-DpIyjHqY.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-LboTfNDv.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-D9Dr-k4J.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-CRg4xQWg.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-BZKlbm2Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-z8fuTE3w.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-CX7oW5zy.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-DwhMAd9l.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-B2d_dHwI.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-CPtBiNgr.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-CbeVJ6OD.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-Di9TbuV9.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-CDVGFYfr.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-B-r81uZ6.js">
+    <link rel="modulepreload" crossorigin href="./assets/tabs-Cy1qXLzH.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CKA5zVsM.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-C40jM9o4.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-D6GUC5q6.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-DMxOzI7b.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-CUK1W5bI.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-Bf-rx_aV.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-CG5g7aUQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-Dfik_tuW.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-Bp3BxyRA.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-Ck-Hgfvj.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-BQB1AIAg.js">
+    <link rel="modulepreload" crossorigin href="./assets/hat-glasses-C8LSY3HT.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-DPlscLzt.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-DrODSIs0.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-Cwh96ZBE.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dmKwNsrp.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-DsD08SLK.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-B6AklCzD.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-6burT2XF.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-DqpoYOvw.js">
+    <link rel="modulepreload" crossorigin href="./assets/VisuallyHidden-CBMDmozt.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-BiqAQ-zI.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-yTIMUO13.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-nQ3Iam8J.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-B58T85Jq.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-CNPGWpMu.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-Bq_nmf5u.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-Dm4DaIgg.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-AQmjV9CX.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-BG35uS_N.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-hr79-MCS.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-nLO-SoUf.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-C7Di8f2y.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-Dw5YY9wq.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-49LGK4zG.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-C6s96nu2.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DmqOOjfe.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-BSRAHC4P.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-CzIGPEZQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-ChZdjJhj.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-DkZweMAs.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-DKsAmLTi.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-BjoL5P0h.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-NhpNrK5l.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-BXC4CItZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-B7x62Eeh.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-rFCxFRI8.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-DF8n85RA.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-ab13yGv4.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-DdGYuADJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/globe-BQf75qV_.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-export-0rLbaq8b.js">
+    <link rel="modulepreload" crossorigin href="./assets/data-grid-types-DgHVN_Zz.js">
+    <link rel="modulepreload" crossorigin href="./assets/glide-utils-UGsrRHYj.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-riSXbYe_.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-B58Ib8Ir.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-MihykDYG.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-Djf4O40e.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-CrFhA96G.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-X-CJUSM8.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-DzY74mzC.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-CjLa9BiH.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-CLytDdMl.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-Cryrlpma.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-DaUHnl_e.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-D-c15Ks-.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-B7zTpxjS.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-BQtz7-np.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-C7yAojRA.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "import marimo\n\n__generated_with = \"0.24.2\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    # College Football Power Rankings\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    import marimo as mo\n\n    import pickle\n    import urllib.request\n\n    import pandas as pd\n    import altair as alt\n\n    import networkx as nx\n\n    return alt, mo, nx, pd, pickle, urllib\n\n\n@app.cell\ndef _(mo, pickle, urllib):\n    def _read_bytes(relative_path: str) -\u003E bytes:\n        path = mo.notebook_location() / relative_path\n        try:\n            # Works when running locally \u2014 path is a real filesystem path\n            with open(path, \"rb\") as f:\n                return f.read()\n        except (FileNotFoundError, OSError, ValueError):\n            # In WASM, notebook_location() is a URL \u2014 fetch it over HTTP instead\n            with urllib.request.urlopen(str(path)) as response:\n                return response.read()\n\n    team_positions = pickle.loads(_read_bytes(\"public/team_positions.pkl\"))\n    G = pickle.loads(_read_bytes(\"public/G.pkl\"))\n    rankings = pickle.loads(_read_bytes(\"public/rankings.pkl\"))\n    teams = pickle.loads(_read_bytes(\"public/teams.pkl\"))\n    icons = pickle.loads(_read_bytes(\"public/icons.pkl\"))\n    summary_matrix = pickle.loads(_read_bytes(\"public/summary_matrix.pkl\"))\n    return G, icons, rankings, summary_matrix, team_positions, teams\n\n\n@app.cell\ndef _(G, nx, team_positions):\n    layers = {idx: round(team_positions[idx]) for idx in range(len(team_positions))}\n    nx.set_node_attributes(G, layers, \"layer\")\n    pos = nx.multipartite_layout(G, subset_key=\"layer\", align=\"horizontal\")\n\n    # Force y positions to team position\n    for _node in pos:\n        pos[_node][1] = team_positions[_node]\n    return (pos,)\n\n\n@app.cell\ndef _(icons, mo, rankings, team_positions, teams):\n    _top10 = []\n    _top20 = []\n    _others = []\n\n    _idx = 0\n    for _id in team_positions.argsort()[::-1]:\n        _item = {\n                    \"Rank\": rankings[_id],\n                    \" \": mo.image(f\"public/icons/{icons[_id]}\", height=35), \n                    \"Team\": teams[_id],\n                }\n        if _idx \u003C 10:\n            _top10.append(_item)\n        elif _idx \u003C 20:\n            _top20.append(_item)\n        else:\n            _others.append(_item)\n\n        _idx += 1\n\n    def _style_cell(row_id, column_name, value):\n        return {\"fontSize\": \"17px\"}\n\n\n    mo.hstack([\n        mo.ui.table(_top10, selection=None, \n                    page_size=10, style_cell=_style_cell,\n                    column_widths={\"Rank\": 60, \" \": 60},\n                    show_search=False, show_download=False, show_data_types=False),\n        mo.ui.table(_top20, selection=None, \n                    page_size=10, style_cell=_style_cell,\n                    column_widths={\"Rank\": 60, \" \": 60},\n                    show_search=False, show_download=False, show_data_types=False),\n        mo.ui.table(_others, selection=None, \n                    page_size=10, style_cell=_style_cell,\n                    column_widths={\"Rank\": 60, \" \": 60},\n                    show_download=False, show_data_types=False)\n    ], wrap=True, widths=\"equal\")\n    return\n\n\n@app.cell\ndef _(G, alt, icons, mo, pd, pos, rankings, summary_matrix, teams):\n    nodes = pd.DataFrame([\n        {\n            \"node\": node,\n            \"x\": pos[node][0],\n            \"y\": pos[node][1],\n            \"team\": f\"{rankings[node]} {teams[node]}\",\n            \"image_url\": f\"public/icons/{icons[node]}\"\n        }\n        for node in G.nodes()\n    ])\n\n    edges = pd.DataFrame([\n        {\n            \"source\": u,\n            \"target\": v,\n            \"summary\": summary_matrix[u,v],\n            \"x\": pos[u][0],\n            \"y\": pos[u][1],\n            \"x2\": pos[v][0],\n            \"y2\": pos[v][1],\n        }\n        for u, v in G.edges()\n    ])\n\n    edges = pd.concat([\n        edges.assign(hover_node=edges[\"source\"]),\n        edges.assign(hover_node=edges[\"target\"]),\n    ], ignore_index=True)\n\n    edges[\"x_mid\"] = (\n        edges[\"x\"] + edges[\"x2\"]\n    ) / 2\n\n    edges[\"y_mid\"] = (\n        edges[\"y\"] + edges[\"y2\"]\n    ) / 2\n\n\n    hover = alt.selection_point(\n        fields=[\"node\"],\n        on=\"image:mouseover\",\n        clear=\"image:mouseout\",\n        nearest=False,\n        empty=False\n    )\n\n    edge_lines = (\n        alt.Chart(edges)\n        .transform_calculate(\n            node=\"datum.hover_node\"\n        )\n        .mark_rule(\n            strokeWidth = 2\n        )\n        .encode(\n            x=\"x:Q\",\n            y=\"y:Q\",\n            x2=\"x2:Q\",\n            y2=\"y2:Q\",\n            opacity=alt.condition(\n                hover,\n                alt.value(1),\n                alt.value(0.05),\n            ),\n        )\n    )\n\n    edge_labels = (\n        alt.Chart(edges)\n        .transform_calculate(\n            node=\"datum.hover_node\"\n        )\n        .mark_text(\n            fontSize=20, fontWeight=\"bold\"\n        )\n        .encode(\n            x=\"x_mid:Q\",\n            y=\"y_mid:Q\",\n            text=\"summary\",\n            opacity=alt.condition(\n                hover,\n                alt.value(1),\n                alt.value(0),\n            ),\n        )\n    )\n\n    edge_labels_background = (\n        alt.Chart(edges)\n        .transform_calculate(node=\"datum.hover_node\")\n        .mark_text(\n            fontSize=20, \n            fontWeight=\"bold\",\n            stroke=\"white\",       # Thick white border around the text\n            strokeWidth=4,        # Controls the thickness of the background box\n            strokeJoin=\"round\"\n        )\n        .encode(\n            x=\"x_mid:Q\",\n            y=\"y_mid:Q\",\n            text=\"summary\",\n            opacity=alt.condition(hover, alt.value(1), alt.value(0)),\n        )\n    )\n\n    node_images = (\n        alt.Chart(nodes)\n        .mark_image(\n            width=30,\n            height=30\n        )\n        .encode(\n            x=alt.X('x:Q', scale=alt.Scale(padding=20)),\n            y=\"y:Q\",\n            url=\"image_url:N\",\n            opacity=alt.value(1.0),\n        )\n        .add_params(hover)\n    )\n\n    corner_tooltip = (\n        alt.Chart(nodes)\n        .mark_text(\n            align=\"left\",\n            baseline=\"top\",\n            fontSize=20,\n            fontWeight=\"bold\",\n            dx=60,  # Slight offset from the left border\n            dy=30   # Slight offset from the top border\n        )\n        .encode(\n            # Hardcode the text position to the top-left corner of the chart\n            x=alt.value(0), \n            y=alt.value(0),\n            # Dynamically display the team name only for the hovered point\n            text=alt.condition(hover, \"team:N\", alt.value(\"\")),\n        )\n    )\n\n    chart = (\n        edge_lines + node_images + edge_labels_background + edge_labels + corner_tooltip\n    ).configure_axis(\n        grid=False, ticks=False, labels=False, domain=False, title=None\n    ).properties(\n        width=\"container\",\n        height=700\n    )\n\n    mo.ui.altair_chart(chart)\n    return\n\n\n@app.cell\ndef _():\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.24.2%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%20College%20Football%20Power%20Rankings%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%0A%20%20%20%20import%20pickle%0A%20%20%20%20import%20urllib.request%0A%0A%20%20%20%20import%20pandas%20as%20pd%0A%20%20%20%20import%20altair%20as%20alt%0A%0A%20%20%20%20import%20networkx%20as%20nx%0A%0A%20%20%20%20return%20alt%2C%20mo%2C%20nx%2C%20pd%2C%20pickle%2C%20urllib%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20pickle%2C%20urllib)%3A%0A%20%20%20%20def%20_read_bytes(relative_path%3A%20str)%20-%3E%20bytes%3A%0A%20%20%20%20%20%20%20%20path%20%3D%20mo.notebook_location()%20%2F%20relative_path%0A%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Works%20when%20running%20locally%20%E2%80%94%20path%20is%20a%20real%20filesystem%20path%0A%20%20%20%20%20%20%20%20%20%20%20%20with%20open(path%2C%20%22rb%22)%20as%20f%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20f.read()%0A%20%20%20%20%20%20%20%20except%20(FileNotFoundError%2C%20OSError%2C%20ValueError)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20In%20WASM%2C%20notebook_location()%20is%20a%20URL%20%E2%80%94%20fetch%20it%20over%20HTTP%20instead%0A%20%20%20%20%20%20%20%20%20%20%20%20with%20urllib.request.urlopen(str(path))%20as%20response%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20response.read()%0A%0A%20%20%20%20team_positions%20%3D%20pickle.loads(_read_bytes(%22public%2Fteam_positions.pkl%22))%0A%20%20%20%20G%20%3D%20pickle.loads(_read_bytes(%22public%2FG.pkl%22))%0A%20%20%20%20rankings%20%3D%20pickle.loads(_read_bytes(%22public%2Frankings.pkl%22))%0A%20%20%20%20teams%20%3D%20pickle.loads(_read_bytes(%22public%2Fteams.pkl%22))%0A%20%20%20%20icons%20%3D%20pickle.loads(_read_bytes(%22public%2Ficons.pkl%22))%0A%20%20%20%20summary_matrix%20%3D%20pickle.loads(_read_bytes(%22public%2Fsummary_matrix.pkl%22))%0A%20%20%20%20return%20G%2C%20icons%2C%20rankings%2C%20summary_matrix%2C%20team_positions%2C%20teams%0A%0A%0A%40app.cell%0Adef%20_(G%2C%20nx%2C%20team_positions)%3A%0A%20%20%20%20layers%20%3D%20%7Bidx%3A%20round(team_positions%5Bidx%5D)%20for%20idx%20in%20range(len(team_positions))%7D%0A%20%20%20%20nx.set_node_attributes(G%2C%20layers%2C%20%22layer%22)%0A%20%20%20%20pos%20%3D%20nx.multipartite_layout(G%2C%20subset_key%3D%22layer%22%2C%20align%3D%22horizontal%22)%0A%0A%20%20%20%20%23%20Force%20y%20positions%20to%20team%20position%0A%20%20%20%20for%20_node%20in%20pos%3A%0A%20%20%20%20%20%20%20%20pos%5B_node%5D%5B1%5D%20%3D%20team_positions%5B_node%5D%0A%20%20%20%20return%20(pos%2C)%0A%0A%0A%40app.cell%0Adef%20_(icons%2C%20mo%2C%20rankings%2C%20team_positions%2C%20teams)%3A%0A%20%20%20%20_top10%20%3D%20%5B%5D%0A%20%20%20%20_top20%20%3D%20%5B%5D%0A%20%20%20%20_others%20%3D%20%5B%5D%0A%0A%20%20%20%20_idx%20%3D%200%0A%20%20%20%20for%20_id%20in%20team_positions.argsort()%5B%3A%3A-1%5D%3A%0A%20%20%20%20%20%20%20%20_item%20%3D%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Rank%22%3A%20rankings%5B_id%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%20%22%3A%20mo.image(f%22public%2Ficons%2F%7Bicons%5B_id%5D%7D%22%2C%20height%3D35)%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Team%22%3A%20teams%5B_id%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20if%20_idx%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_top10.append(_item)%0A%20%20%20%20%20%20%20%20elif%20_idx%20%3C%2020%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_top20.append(_item)%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_others.append(_item)%0A%0A%20%20%20%20%20%20%20%20_idx%20%2B%3D%201%0A%0A%20%20%20%20def%20_style_cell(row_id%2C%20column_name%2C%20value)%3A%0A%20%20%20%20%20%20%20%20return%20%7B%22fontSize%22%3A%20%2217px%22%7D%0A%0A%0A%20%20%20%20mo.hstack(%5B%0A%20%20%20%20%20%20%20%20mo.ui.table(_top10%2C%20selection%3DNone%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20page_size%3D10%2C%20style_cell%3D_style_cell%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20column_widths%3D%7B%22Rank%22%3A%2060%2C%20%22%20%22%3A%2060%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20show_search%3DFalse%2C%20show_download%3DFalse%2C%20show_data_types%3DFalse)%2C%0A%20%20%20%20%20%20%20%20mo.ui.table(_top20%2C%20selection%3DNone%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20page_size%3D10%2C%20style_cell%3D_style_cell%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20column_widths%3D%7B%22Rank%22%3A%2060%2C%20%22%20%22%3A%2060%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20show_search%3DFalse%2C%20show_download%3DFalse%2C%20show_data_types%3DFalse)%2C%0A%20%20%20%20%20%20%20%20mo.ui.table(_others%2C%20selection%3DNone%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20page_size%3D10%2C%20style_cell%3D_style_cell%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20column_widths%3D%7B%22Rank%22%3A%2060%2C%20%22%20%22%3A%2060%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20show_download%3DFalse%2C%20show_data_types%3DFalse)%0A%20%20%20%20%5D%2C%20wrap%3DTrue%2C%20widths%3D%22equal%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(G%2C%20alt%2C%20icons%2C%20mo%2C%20pd%2C%20pos%2C%20rankings%2C%20summary_matrix%2C%20teams)%3A%0A%20%20%20%20nodes%20%3D%20pd.DataFrame(%5B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22node%22%3A%20node%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22x%22%3A%20pos%5Bnode%5D%5B0%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22y%22%3A%20pos%5Bnode%5D%5B1%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22team%22%3A%20f%22%7Brankings%5Bnode%5D%7D%20%7Bteams%5Bnode%5D%7D%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22image_url%22%3A%20f%22public%2Ficons%2F%7Bicons%5Bnode%5D%7D%22%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20for%20node%20in%20G.nodes()%0A%20%20%20%20%5D)%0A%0A%20%20%20%20edges%20%3D%20pd.DataFrame(%5B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22source%22%3A%20u%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22target%22%3A%20v%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22summary%22%3A%20summary_matrix%5Bu%2Cv%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22x%22%3A%20pos%5Bu%5D%5B0%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22y%22%3A%20pos%5Bu%5D%5B1%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22x2%22%3A%20pos%5Bv%5D%5B0%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22y2%22%3A%20pos%5Bv%5D%5B1%5D%2C%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20for%20u%2C%20v%20in%20G.edges()%0A%20%20%20%20%5D)%0A%0A%20%20%20%20edges%20%3D%20pd.concat(%5B%0A%20%20%20%20%20%20%20%20edges.assign(hover_node%3Dedges%5B%22source%22%5D)%2C%0A%20%20%20%20%20%20%20%20edges.assign(hover_node%3Dedges%5B%22target%22%5D)%2C%0A%20%20%20%20%5D%2C%20ignore_index%3DTrue)%0A%0A%20%20%20%20edges%5B%22x_mid%22%5D%20%3D%20(%0A%20%20%20%20%20%20%20%20edges%5B%22x%22%5D%20%2B%20edges%5B%22x2%22%5D%0A%20%20%20%20)%20%2F%202%0A%0A%20%20%20%20edges%5B%22y_mid%22%5D%20%3D%20(%0A%20%20%20%20%20%20%20%20edges%5B%22y%22%5D%20%2B%20edges%5B%22y2%22%5D%0A%20%20%20%20)%20%2F%202%0A%0A%0A%20%20%20%20hover%20%3D%20alt.selection_point(%0A%20%20%20%20%20%20%20%20fields%3D%5B%22node%22%5D%2C%0A%20%20%20%20%20%20%20%20on%3D%22image%3Amouseover%22%2C%0A%20%20%20%20%20%20%20%20clear%3D%22image%3Amouseout%22%2C%0A%20%20%20%20%20%20%20%20nearest%3DFalse%2C%0A%20%20%20%20%20%20%20%20empty%3DFalse%0A%20%20%20%20)%0A%0A%20%20%20%20edge_lines%20%3D%20(%0A%20%20%20%20%20%20%20%20alt.Chart(edges)%0A%20%20%20%20%20%20%20%20.transform_calculate(%0A%20%20%20%20%20%20%20%20%20%20%20%20node%3D%22datum.hover_node%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.mark_rule(%0A%20%20%20%20%20%20%20%20%20%20%20%20strokeWidth%20%3D%202%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D%22x%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%22y%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20x2%3D%22x2%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y2%3D%22y2%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20opacity%3Dalt.condition(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20hover%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.value(1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.value(0.05)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20edge_labels%20%3D%20(%0A%20%20%20%20%20%20%20%20alt.Chart(edges)%0A%20%20%20%20%20%20%20%20.transform_calculate(%0A%20%20%20%20%20%20%20%20%20%20%20%20node%3D%22datum.hover_node%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.mark_text(%0A%20%20%20%20%20%20%20%20%20%20%20%20fontSize%3D20%2C%20fontWeight%3D%22bold%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D%22x_mid%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%22y_mid%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3D%22summary%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20opacity%3Dalt.condition(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20hover%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.value(1)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alt.value(0)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20edge_labels_background%20%3D%20(%0A%20%20%20%20%20%20%20%20alt.Chart(edges)%0A%20%20%20%20%20%20%20%20.transform_calculate(node%3D%22datum.hover_node%22)%0A%20%20%20%20%20%20%20%20.mark_text(%0A%20%20%20%20%20%20%20%20%20%20%20%20fontSize%3D20%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20fontWeight%3D%22bold%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20stroke%3D%22white%22%2C%20%20%20%20%20%20%20%23%20Thick%20white%20border%20around%20the%20text%0A%20%20%20%20%20%20%20%20%20%20%20%20strokeWidth%3D4%2C%20%20%20%20%20%20%20%20%23%20Controls%20the%20thickness%20of%20the%20background%20box%0A%20%20%20%20%20%20%20%20%20%20%20%20strokeJoin%3D%22round%22%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D%22x_mid%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%22y_mid%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3D%22summary%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20opacity%3Dalt.condition(hover%2C%20alt.value(1)%2C%20alt.value(0))%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20node_images%20%3D%20(%0A%20%20%20%20%20%20%20%20alt.Chart(nodes)%0A%20%20%20%20%20%20%20%20.mark_image(%0A%20%20%20%20%20%20%20%20%20%20%20%20width%3D30%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20height%3D30%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dalt.X('x%3AQ'%2C%20scale%3Dalt.Scale(padding%3D20))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D%22y%3AQ%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20url%3D%22image_url%3AN%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20opacity%3Dalt.value(1.0)%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.add_params(hover)%0A%20%20%20%20)%0A%0A%20%20%20%20corner_tooltip%20%3D%20(%0A%20%20%20%20%20%20%20%20alt.Chart(nodes)%0A%20%20%20%20%20%20%20%20.mark_text(%0A%20%20%20%20%20%20%20%20%20%20%20%20align%3D%22left%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20baseline%3D%22top%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20fontSize%3D20%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20fontWeight%3D%22bold%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20dx%3D60%2C%20%20%23%20Slight%20offset%20from%20the%20left%20border%0A%20%20%20%20%20%20%20%20%20%20%20%20dy%3D30%20%20%20%23%20Slight%20offset%20from%20the%20top%20border%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20.encode(%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Hardcode%20the%20text%20position%20to%20the%20top-left%20corner%20of%20the%20chart%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dalt.value(0)%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3Dalt.value(0)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Dynamically%20display%20the%20team%20name%20only%20for%20the%20hovered%20point%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3Dalt.condition(hover%2C%20%22team%3AN%22%2C%20alt.value(%22%22))%2C%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20chart%20%3D%20(%0A%20%20%20%20%20%20%20%20edge_lines%20%2B%20node_images%20%2B%20edge_labels_background%20%2B%20edge_labels%20%2B%20corner_tooltip%0A%20%20%20%20).configure_axis(%0A%20%20%20%20%20%20%20%20grid%3DFalse%2C%20ticks%3DFalse%2C%20labels%3DFalse%2C%20domain%3DFalse%2C%20title%3DNone%0A%20%20%20%20).properties(%0A%20%20%20%20%20%20%20%20width%3D%22container%22%2C%0A%20%20%20%20%20%20%20%20height%3D700%0A%20%20%20%20)%0A%0A%20%20%20%20mo.ui.altair_chart(chart)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.24.2",
+            "serverToken": "unused",
+            "config": {"ai": {"allow_provider_config": true, "custom_providers": {}, "enabled": true, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "auto_close_pairs": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 15, "code_lens": true, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 20, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "layout": null,
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>
